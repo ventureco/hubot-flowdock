@@ -102,6 +102,7 @@ class Flowdock extends Adapter
     @stream.on 'connected', =>
       @robot.logger.info('Flowdock: connected and streaming')
       @robot.logger.info('Flowdock: listening to flows:', (flow.name for flow in @joinedFlows()).join(', '))
+      @emit 'streaming', @stream
     @stream.on 'clientError', (error) => @robot.logger.error('Flowdock: client error:', error)
     @stream.on 'disconnected', => @robot.logger.info('Flowdock: disconnected')
     @stream.on 'reconnecting', => @robot.logger.info('Flowdock: reconnecting')
